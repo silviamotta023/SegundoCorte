@@ -2,79 +2,36 @@ package Ejercicio5;
 
 public class ListaR {
     private Cancion cabeza;
-    private Cancion actual; 
-    public ListaR() {
-        this.cabeza = null;
-        this.actual = null;
-    }
 
-    public void agregarAlFinal(String titulo, String artista, int duracion, String genero) {
-
-        Cancion nuevo = new Cancion(titulo, artista, duracion, genero);
+    public void agregar(String titulo, String artista, int duracionSegundos, String genero) {
+        Cancion nueva = new Cancion(titulo, artista, duracionSegundos, genero);
 
         if (cabeza == null) {
-            cabeza = nuevo;
-            actual = nuevo;
+            cabeza = nueva;
         } else {
-            Cancion temp = cabeza;
-
-            while (temp.siguiente != null) {
-                temp = temp.siguiente;
+            Cancion actual = cabeza;
+            while (actual.siguiente != null) {
+                actual = actual.siguiente;
             }
-
-            temp.siguiente = nuevo;
+            actual.siguiente = nueva;
         }
     }
 
-    public void agregarDespuesActual(String titulo, String artista, int duracion, String genero) {
-
-        Cancion nuevo = new Cancion(titulo, artista, duracion, genero);
-
+    public void mostrar() {
         if (cabeza == null) {
-            cabeza = nuevo;
-            actual = nuevo;
+            System.out.println("La lista de canciones está vacía.");
             return;
         }
 
-        if (actual == null) {
-            agregarAlFinal(titulo, artista, duracion, genero);
-            return;
-        }
+        Cancion actual = cabeza;
 
-        nuevo.siguiente = actual.siguiente;
-        actual.siguiente = nuevo;
-        actual = nuevo;
-    }
-
-    public void mostrarDuracionTotal() {
-
-        int totalSegundos = 0;
-        Cancion temp = cabeza;
-
-        while (temp != null) {
-            totalSegundos += temp.duracionSegundos;
-            temp = temp.siguiente;
-        }
-
-        int minutos = totalSegundos / 60;
-        int segundos = totalSegundos % 60;
-
-        System.out.println("Duración total: " + minutos + ":" + (segundos < 10 ? "0" + segundos : segundos));
-    }
-
-    public void mostrarLista() {
-
-        Cancion temp = cabeza;
-
-        while (temp != null) {
-            System.out.println(
-                temp.titulo +
-                " | " + temp.artista +
-                " | " + temp.duracionSegundos + "s" +
-                " | " + temp.genero
-            );
-
-            temp = temp.siguiente;
+        while (actual != null) {
+            System.out.println("--------------");
+            System.out.println("Título: " + actual.titulo);
+            System.out.println("Artista: " + actual.artista);
+            System.out.println("Duración: " + actual.duracionSegundos + " segundos");
+            System.out.println("Género: " + actual.genero);
+            actual = actual.siguiente;
         }
     }
 }

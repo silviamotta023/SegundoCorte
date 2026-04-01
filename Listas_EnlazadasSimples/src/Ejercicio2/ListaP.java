@@ -4,63 +4,33 @@ public class ListaP {
 
     private Producto cabeza;
 
-    public ListaP() {
-        this.cabeza = null;
-    }
-
-    public void agregarProducto(String nombre, int cantidad, int diasParaVencer) {
-
+    public void agregar(String nombre, int cantidad, int diasParaVencer) {
         Producto nuevo = new Producto(nombre, cantidad, diasParaVencer);
 
-        if (diasParaVencer < 3) {
-            nuevo.siguiente = cabeza;
+        if (cabeza == null) {
             cabeza = nuevo;
-        } 
-        else {
-            if (cabeza == null) {
-                cabeza = nuevo;
-            } else {
-                Producto actual = cabeza;
-
-                while (actual.siguiente != null) {
-                    actual = actual.siguiente;
-                }
-
-                actual.siguiente = nuevo;
+        } else {
+            Producto actual = cabeza;
+            while (actual.siguiente != null) {
+                actual = actual.siguiente;
             }
+            actual.siguiente = nuevo;
         }
     }
 
-    public void imprimirProximosAVencer() {
-
-        Producto actual = cabeza;
-
-        System.out.println("Productos con menos de 5 días para vencer:");
-
-        while (actual != null) {
-
-            if (actual.diasParaVencer < 5) {
-                System.out.println(
-                    actual.nombre +
-                    " | Cantidad: " + actual.cantidad +
-                    " | Días: " + actual.diasParaVencer
-                );
-            }
-
-            actual = actual.siguiente;
+    public void mostrar() {
+        if (cabeza == null) {
+            System.out.println("La lista está vacía.");
+            return;
         }
-    }
-
-    public void mostrarTodo() {
 
         Producto actual = cabeza;
 
         while (actual != null) {
-            System.out.println(
-                actual.nombre +
-                " | Cantidad: " + actual.cantidad +
-                " | Días: " + actual.diasParaVencer
-            );
+            System.out.println("---------------");
+            System.out.println("Nombre: " + actual.nombre);
+            System.out.println("Cantidad: " + actual.cantidad);
+            System.out.println("Días para vencer: " + actual.diasParaVencer);
             actual = actual.siguiente;
         }
     }
