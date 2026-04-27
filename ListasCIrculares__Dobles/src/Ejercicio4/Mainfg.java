@@ -14,7 +14,7 @@ public class Mainfg {
             System.out.println("1. Agregar foto");
             System.out.println("2. Siguiente");
             System.out.println("3. Anterior");
-            System.out.println("4. Marcar/Desmarcar favorita");
+            System.out.println("4. Marcar o Desmarcar favorita");
             System.out.println("5. Eliminar actual");
             System.out.println("6. Mostrar galería");
             System.out.println("7. Simulación automática");
